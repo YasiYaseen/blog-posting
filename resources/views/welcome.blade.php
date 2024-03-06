@@ -1,40 +1,27 @@
-
 @extends('layouts.master')
 @section('content')
-<h3 class="mb-3 mt-3">Users</h3>
-@if(session()->has('status'))
-    <p>{{session()->get('status')}}</p>
-@endif
-<table class="table">
-    <div class="d-flex">
-        <a href="{{route('create')}}" class="btn btn-primary mb-2 ms-auto">New</a>
+<div class="container">
+    <h3 class="mb-3 mt-3">Blog Posts</h3>
+    @if(session()->has('status'))
+        <p>{{session()->get('status')}}</p>
+    @endif
+    <div class="row">
+        @foreach ($blogPosts as $post)
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{$post->title}}</h5>
+                    <p class="card-text">{{$post->description}}</p>
+                    <a href="{{route('edit.post', encrypt($post->id))}}" class="btn btn-primary">Edit</a>
+                    <a href="{{route('delete.post', encrypt($post->id))}}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+        @endforeach
     </div>
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      @foreach ($users as $user)
-      <tr>
-        <th scope="row">{{$users->firstItem()+$loop->index}}</th>
-        <td>{{$user->name}}</td>
-        <td>{{$user->email}}</td>
-        <td>
-            <a href="{{route('update',encrypt($user->id))}}" class="btn btn-primary">Edit</a>
-             <a href="{{route('delete',encrypt($user->id))}}" class="btn btn-danger">Delete</a>
-            <a href="{{route('forcedelete.user',encrypt($user->id))}}" class="btn btn-info">Force Delete</a>
-            </td>
-      </tr>
-      @endforeach
-
-    </tbody>
-  </table>
-  <div>
-    {{$users->links()}}
-  </div>
+    <div class="mt-4">
+        {{$blogPosts->links()}}
+    </div>
+</div>
 {{session()->get('user_name')}}
 @endsection
