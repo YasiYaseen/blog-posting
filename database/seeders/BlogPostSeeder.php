@@ -13,10 +13,18 @@ class BlogPostSeeder extends Seeder
      */
     public function run()
     {
-        //
         DB::table('blog_posts')->insert([
-            ['title' => 'First Post', 'description' => 'This is the description for the first post.'],
-            ['title' => 'Second Post', 'description' => 'This is the description for the second post.'],
+            [
+                'user_id' => 1,
+                'title' => 'First Post',
+                'description' => 'This is the description for the first post.',
+            ],
+            [
+                'user_id' => 1,
+                'title' => 'Second Post',
+                'description' => 'This is the description for the second post.',
+            ],
         ]);
+
     }
 }
