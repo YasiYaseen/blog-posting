@@ -7,7 +7,7 @@
             <form>
                 <input type="text" id="username" name="username" placeholder="Username" required>
                 <input type="password" id="password" name="password" placeholder="Password" required>
-                <button type="submit">Login</button>
+                <a class="button" href="{{route('blogs')}}">Login</a>
             </form>
         </div>
     </div>

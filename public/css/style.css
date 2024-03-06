@@ -41,7 +41,7 @@
     border-color: #ff4500;
 }
 
-.login-container button {
+.login-container .button {
     background-color: #ff4500;
     color: #fff;
     padding: 10px;
@@ -51,6 +51,6 @@
     transition: background-color 0.3s ease-in-out;
 }
 
-.login-container button:hover {
+.login-container .button:hover {
     background-color: #e63900;
 }

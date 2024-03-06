@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\BlogPost;
 
 class LoginController extends Controller
 {
@@ -16,19 +16,20 @@ class LoginController extends Controller
     }
     public function blogs()
     {
+        $blogPosts = BlogPost::all();
 
-        return view("welcome");
+        return view("welcome",compact('blogPosts'));
     }
     public function login(LoginRequest $request)
     {
         $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
-            // Authentication passed
+
             return redirect()->route('blogs');
         }
 
-        // Authentication failed
+
         return redirect()->route('login')->with('error', 'Invalid credentials');
     }
 }
