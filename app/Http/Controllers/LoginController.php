@@ -14,13 +14,18 @@ class LoginController extends Controller
 
         return view("login");
     }
+    public function blogs()
+    {
+
+        return view("welcome");
+    }
     public function login(LoginRequest $request)
     {
         $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
             // Authentication passed
-            return redirect()->intended('/dashboard');
+            return redirect()->route('blogs');
         }
 
         // Authentication failed
